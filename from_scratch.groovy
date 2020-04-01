@@ -10,9 +10,9 @@ stage("Pull repo"){
     git 'https://github.com/farrukh90/cool_website.git'
 } 
 stage("Install prerequisites"){ 
-sh """
-ssh centos@jenkins_worker1.kuzyshynliliia.com                 sudo yum install httpd -y
-"""
+    sh """
+    ssh centos@jenkins_worker1.kuzyshynliliia.com                 sudo yum install httpd -y
+    """
 } 
 stage("Copy artifacts"){ 
    sh """
