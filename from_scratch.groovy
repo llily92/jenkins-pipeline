@@ -3,10 +3,9 @@ properties([
     // Below line sets "Discard build more than 5"
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
     // Below line triggers this job every minute 
-     pipelineTriggers([cron('* * * * *')])
-     ])
-
-
+     pipelineTriggers([pollSCM('* * * * *')])
+        ])
+       
 
 stage("Stage1"){ 
 echo "hello" 
