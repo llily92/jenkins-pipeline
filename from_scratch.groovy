@@ -23,7 +23,7 @@ stage("Copy artifacts"){
    ssh centos@jenkins_worker1.kuzyshynliliia.com				   sudo chmod 777 /var/www/html/*
    """
 } 
-stage("Restart web server){ 
+stage("Restart web server"){ 
     sh "ssh centos@jenkins_worker1.kuzyshynliliia.com                 sudo systemctl restart httpd"
 } 
 stage("Slack"){ 
