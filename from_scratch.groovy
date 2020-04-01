@@ -17,10 +17,10 @@ stage("Install prerequisites"){
 stage("Copy artifacts"){ 
    sh """
    scp -r *  centos@3.81.121.8:/tmp
-   ssh centos@3.81.121.8.com                 sudo cp -r /tmp/index.html /var/www/html/
-   ssh centos@3.81.121.8.com                 sudo cp -r /tmp/style.css /var/www/html/
-   ssh centos@3.81.121.8.com				   sudo chown centos:centos /var/www/html/
-   ssh centos@3.81.121.8.com				   sudo chmod 777 /var/www/html/*
+   ssh centos@3.81.121.8                 sudo cp -r /tmp/index.html /var/www/html/
+   ssh centos@3.81.121.8                 sudo cp -r /tmp/style.css /var/www/html/
+   ssh centos@3.81.121.8				   sudo chown centos:centos /var/www/html/
+   ssh centos@3.81.121.8				   sudo chmod 777 /var/www/html/*
    """
 } 
 stage("Restart web server"){ 
