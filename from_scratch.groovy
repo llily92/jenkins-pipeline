@@ -23,7 +23,7 @@ stage("Install prerequisites"){
 } 
 stage("Copy artifacts"){ 
    sh """
-   scp -r *  centos@{ENVIR}:/tmp
+   scp -r *  centos@${ENVIR}:/tmp
    ssh centos@${ENVIR}                  sudo cp -r /tmp/index.html /var/www/html/
    ssh centos@${ENVIR}                  sudo cp -r /tmp/style.css /var/www/html/
    ssh centos@${ENVIR} 				   sudo chown centos:centos /var/www/html/
