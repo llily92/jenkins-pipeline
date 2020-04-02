@@ -18,20 +18,20 @@ stage("Pull repo"){
 } 
 stage("Install prerequisites"){ 
     sh """
-    ssh centos@{ENVIR}               sudo yum install httpd -y
+    ssh centos@${ENVIR}               sudo yum install httpd -y
     """
 } 
 stage("Copy artifacts"){ 
    sh """
    scp -r *  centos@{ENVIR}:/tmp
-   ssh centos@{ENVIR}                  sudo cp -r /tmp/index.html /var/www/html/
-   ssh centos@{ENVIR}                  sudo cp -r /tmp/style.css /var/www/html/
-   ssh centos@{ENVIR} 				   sudo chown centos:centos /var/www/html/
-   ssh centos@{ENVIR} 				   sudo chmod 777 /var/www/html/*
+   ssh centos@${ENVIR}                  sudo cp -r /tmp/index.html /var/www/html/
+   ssh centos@${ENVIR}                  sudo cp -r /tmp/style.css /var/www/html/
+   ssh centos@${ENVIR} 				   sudo chown centos:centos /var/www/html/
+   ssh centos@${ENVIR} 				   sudo chmod 777 /var/www/html/*
    """
 } 
 stage("Restart web server"){ 
-    sh "ssh centos@3{ENVIR}                 sudo systemctl restart httpd"
+    sh "ssh centos@${ENVIR}                 sudo systemctl restart httpd"
 } 
 stage("Slack"){ 
     slackSend color: '#BADA55', message: 'Hello, World!' 
