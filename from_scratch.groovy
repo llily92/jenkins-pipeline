@@ -18,12 +18,12 @@ stage("Pull repo"){
 } 
 stage("Install prerequisites"){ 
     sh """
-    ssh centos@3.81.121.8                 sudo yum install httpd -y
+    ssh centos@{ENVIR}               sudo yum install httpd -y
     """
 } 
 stage("Copy artifacts"){ 
    sh """
-   scp -r *  centos@3.81.121.8:/tmp
+   scp -r *  centos@{ENVIR}:/tmp
    ssh centos@{ENVIR}                  sudo cp -r /tmp/index.html /var/www/html/
    ssh centos@{ENVIR}                  sudo cp -r /tmp/style.css /var/www/html/
    ssh centos@{ENVIR} 				   sudo chown centos:centos /var/www/html/
