@@ -4,6 +4,13 @@ properties([
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
     // Below line triggers this job every minute 
      pipelineTriggers([pollSCM('* * * * *')])
+     parameters([choice(choices: [
+			'dev1.acirrustech.com', 
+			'qa1.acirrustech.com', 
+			'stage1.acirrustech.com', 
+			'prod1.acirrustech.com'], 
+			description: 'Please choose an environment', 
+			name: 'ENVIR')]), 
         ])
        
 stage("Pull repo"){ 
