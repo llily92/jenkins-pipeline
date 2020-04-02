@@ -24,14 +24,14 @@ stage("Install prerequisites"){
 stage("Copy artifacts"){ 
    sh """
    scp -r *  centos@3.81.121.8:/tmp
-   ssh centos@3.81.121.8                 sudo cp -r /tmp/index.html /var/www/html/
-   ssh centos@3.81.121.8                 sudo cp -r /tmp/style.css /var/www/html/
-   ssh centos@3.81.121.8				   sudo chown centos:centos /var/www/html/
-   ssh centos@3.81.121.8				   sudo chmod 777 /var/www/html/*
+   ssh centos@{ENVIR}                  sudo cp -r /tmp/index.html /var/www/html/
+   ssh centos@{ENVIR}                  sudo cp -r /tmp/style.css /var/www/html/
+   ssh centos@{ENVIR} 				   sudo chown centos:centos /var/www/html/
+   ssh centos@{ENVIR} 				   sudo chmod 777 /var/www/html/*
    """
 } 
 stage("Restart web server"){ 
-    sh "ssh centos@3.81.121.8                 sudo systemctl restart httpd"
+    sh "ssh centos@3{ENVIR}                 sudo systemctl restart httpd"
 } 
 stage("Slack"){ 
     slackSend color: '#BADA55', message: 'Hello, World!' 
