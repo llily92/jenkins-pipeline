@@ -6,7 +6,8 @@ properties([
        // Runs with "Input" job
         upstream('Input'),
         // Executes every minute
-        cron('* * * * *')])
+        cron('* * * * *')
+        ])
         ])
 stage("Stage1"){ 
 git 'https://github.com/farrukh90/packer.git' 
