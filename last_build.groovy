@@ -8,8 +8,6 @@ properties([
         // Executes every minute
         cron('* * * * *')])
         ])
-    ])
-
 stage("Stage1"){ 
 git 'https://github.com/farrukh90/packer.git' 
 } 
