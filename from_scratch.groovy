@@ -53,10 +53,16 @@ stage("Copy artifacts"){
    """
 } 
 stage("Restart web server"){ 
+ws ("tmp/") {
     sh "ssh centos@${ENVIR}                 sudo systemctl restart httpd"
+
+}
+
 } 
 stage("Slack"){ 
-    slackSend color: '#BADA55', message: 'Hello, World!' 
+    ws ("mnt/") {
+        slackSend color: '#BADA55', message: 'Hello, World!' 
+    }
 }
 } 
 
