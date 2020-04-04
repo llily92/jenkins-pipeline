@@ -24,7 +24,7 @@ properties([
              'v0.5'],  
             description: 'Which version should we deploy?',  
             name: 'Version')
-     ]}
+        ]}
         ])
        
 stage("Pull repo"){ 
