@@ -21,9 +21,17 @@ properties([
             'v0.2',
             'v0.3',
             'v0.4',
-             'v0.5'],  
+             'v0.5'
+             ],  
             description: 'Which version should we deploy?',  
-            name: 'Version')
+            name: 'Version'),
+
+             // Asks for the input
+            string(defaultValue: 'v1',
+            description: 'Please enter version number',
+            name: 'APP_VERSION',
+            trim: true)
+
         ])
         ])
        
