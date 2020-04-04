@@ -1,4 +1,4 @@
-node('linux') { 
+node { 
 properties([
     // Below line sets "Discard build more than 5"
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
