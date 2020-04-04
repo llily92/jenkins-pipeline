@@ -2,6 +2,7 @@ node {
 properties([
     // Below line sets "Discard build more than 5"
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
+    disableConcurrentBuilds(),
     // Below line triggers this job every minute 
      pipelineTriggers([pollSCM('* * * * *')]),
      parameters([choice(choices: [
