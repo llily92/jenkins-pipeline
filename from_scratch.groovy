@@ -5,13 +5,26 @@ properties([
     disableConcurrentBuilds(),
     // Below line triggers this job every minute 
      pipelineTriggers([pollSCM('* * * * *')]),
-     parameters([choice(choices: [
+     parameters([
+         // Asks for env to build
+         choice(choices: [
 			'dev1.kuzyshynliliia.com', 
 			'qa1.kuzyshynliliia.com', 
 			'stage1.kuzyshynliliia.com', 
 			'prod1.kuzyshynliliia.com'], 
 			description: 'Please choose an environment', 
-			name: 'ENVIR')]), 
+			name: 'ENVIR'), 
+             
+             // Ask for version
+            choice(choices:  [
+            'v0.1', 
+            'v0.2',
+            'v0.3',
+            'v0.4',
+             'v0.5'],  
+            description: 'Which version should we deploy?',  
+            name: 'Version')
+     ]}
         ])
        
 stage("Pull repo"){ 
