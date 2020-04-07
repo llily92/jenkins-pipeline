@@ -12,10 +12,10 @@ description: 'Which version of the app should I deploy? ',
 name: 'Version'),  
 choice(choices:  
 [ 
-'dev1.acirrustech.com',  
-'qa1.acirrustech.com',  
-'stage1.acirrustech.com',  
-'prod1.acirrustech.com'],  
+'dev1.kuzyshynliliia.com',  
+'qa1.kuzyshynliliia.com',  
+'stage1.kuzyshynliliia.com',  
+'prod1.kuzyshynliliia.com'],  
 description: 'Please provide an environment to build the application',  
 name: 'ENVIR')])]) 
 stage("Stage1"){ 
