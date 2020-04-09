@@ -29,7 +29,7 @@ stage("Get Credentials"){
 timestamps { 
 ws{ 
 sh ''' 
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis 
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 101032306675.dkr.ecr.us-east-1.amazonaws.com/artemis 
 ''' 
 } 
 } 
@@ -47,7 +47,7 @@ stage("Tag Image"){
 timestamps { 
 ws { 
 sh ''' 
-docker tag artemis:${Version} 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version} 
+docker tag artemis:${Version} 101032306675.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version} 
 ''' 
 } 
 } 
@@ -56,7 +56,7 @@ stage("Push Image"){
 timestamps { 
 ws { 
 sh ''' 
-docker push 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version} 
+docker push 101032306675.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version} 
 ''' 
 } 
 } 
@@ -75,10 +75,10 @@ ws {
 try { 
 sh ''' 
 #!/bin/bash 
-IMAGES=$(ssh centos@dev1.acirrustech.com docker ps -aq)  
+IMAGES=$(ssh centos@${ENVIR} docker ps -aq)  
 for i in \$IMAGES; do 
-ssh centos@dev1.acirrustech.com docker stop \$i 
-ssh centos@dev1.acirrustech.com docker rm \$i 
+ssh centos@${ENVIR} docker stop \$i 
+ssh centos@${ENVIR} docker rm \$i 
 done  
 ''' 
 } catch(e) { 
@@ -91,7 +91,7 @@ stage("Run Container"){
 timestamps { 
 ws { 
 sh ''' 
-ssh centos@dev1.acirrustech.com docker run -dti -p 5001:5000 713287746880.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version} 
+ssh centos@${ENVIR} docker run -dti -p 5001:5000 101032306675.dkr.ecr.us-east-1.amazonaws.com/artemis:${Version} 
 ''' 
 } 
 } 
